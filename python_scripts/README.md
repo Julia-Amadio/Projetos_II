@@ -1,0 +1,2 @@
+## segmentador_augmentation.py
+Utilizado para testes de data augmentation visando o balanceamento de classes do dataset. Equivalente ao notebook .ipynb de mesmo nome que se encontra no diretório de notebooks.
