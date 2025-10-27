@@ -1,0 +1,75 @@
+#Default ignored files
+/shelf/
+/workspace.xml
+
+#Editor-based HTTP Client requests
+/httpRequests/
+
+#Builds temporários / cache
+dist/
+build/
+.cache/
+.tmp/
+
+#Ambiente local
+.env
+
+#Logs
+logs/
+*.log
+
+#Arquivos temporários
+*.swp
+
+#Cache de navegadores ou ferramentas
+.cache/
+*.tmp
+*.bak
+*.old
+
+
+#--------------------------DOCKER
+
+#Arquivos de build e volumes locais
+*.pid
+*.seed
+*.pid.lock
+docker-compose.override.yml
+
+#Volumes e imagens locais
+data/
+volumes/
+tmp/
+
+
+#--------------------------PYTHON
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints/
+venv/
+env/
+.venv/
+#Arquivo binário NumPy
+*.npy
+
+#--------------------------SISTEMA E IDE
+
+#VSCode / JetBrains
+*.code-workspace
+.vscode/
+.idea/
+*.iml
+
+#Arquivos do sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+#--------------------------FORMATOS DE IMAGEM
+*.jpg
+*.jpeg
+*.png
+*.bmp
