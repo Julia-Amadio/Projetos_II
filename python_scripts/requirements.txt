@@ -27,3 +27,7 @@ natsort                 #Ordenação “natural” de strings, útil para nomes 
 
 #Machine Learning clássico
 scikit-learn>=1.3.0     #Classificadores (SVM, RandomForest), métricas, validação
+
+#Integração e deploy
+fastapi
+uvicorn
