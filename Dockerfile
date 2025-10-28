@@ -1,22 +1,28 @@
-FROM python:3.10-slim
+#Use Python 3.11 (compatível com PyTorch CPU e rembg-lite)
+FROM python:3.11-slim
 
-#Define diretório de trabalho dentro do container
+#Define diretório de trabalho
 WORKDIR /python_scripts
 
-#Copia os arquivos do projeto para dentro da imagem
-COPY . /python_scripts
+#Copia código da pasta local
+COPY python_scripts/ /python_scripts/
 
-#Atualiza o pip e instala dependências do sistema necessárias
+#Copia requirements
+COPY requirements.txt ./
+
+#Instala dependências do sistema
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    git \
+    build-essential git wget ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-#Instalação das dependências Python
-RUN pip install --no-cache-dir -r requirements_notFinished.txt
+#Instala pip atualizado
+RUN pip install --no-cache-dir --upgrade pip
 
-#Configuração da aplicação
+#Instala todas as dependências Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+#Expõe porta para FastAPI
 EXPOSE 8000
 
-#Comando de inicialização da API FastAPI
+#Comando para iniciar a API
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
