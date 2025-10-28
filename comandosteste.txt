@@ -1,0 +1,11 @@
+#comandos do terminal
+#clonar esse repo primeiro na sua máquina
+
+#fazer teste de endpoint (ter todas as libs necessarias instaladas antes, obviamente):
+cd .\python_scripts\
+uvicorn main:app --reload
+
+#dockerizar 
+uvicorn main:app --reload
+#executar o container (nao vai dar certo por causa da rembg)
+docker run -p 8000:8000 soja-api
