@@ -4,7 +4,7 @@ FROM python:3.10
 #define diretório de trabalho
 WORKDIR /python_scripts
 
-#copia scripts e requirements
+# copia scripts e requirements
 COPY python_scripts/ /python_scripts/
 COPY requirements.txt ./
 
@@ -13,12 +13,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git build-essential && \
     rm -rf /var/lib/apt/lists/*
 
-#instala dependências Python
+#instala dependências
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-#expõe explicitamente a porta usada pelo Render
+#expõe a porta que o Render definirá via variável $PORT
 EXPOSE 10000
 
-#inicia o servidor FastAPI
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
+#inicia o servidor FastAPI — lê a porta dinamicamente
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
