@@ -41,12 +41,15 @@ class FeatureExtractor:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         print(f"Usando dispositivo: {self.device}")
 
+        #Define o nome do modelo
+        MODEL_NAME = "facebook/convnext-tiny-224" # <-- MUDANÇA AQUI
+
         #Modelo e pré-processador
         self.processor = ConvNextImageProcessor.from_pretrained(
-            "facebook/convnext-large-224-22k-1k"
+            MODEL_NAME # <-- MUDANÇA AQUI
         )
         self.model = ConvNextForImageClassification.from_pretrained(
-            "facebook/convnext-large-224-22k-1k"
+            MODEL_NAME # <-- MUDANÇA AQUI
         ).to(self.device)
 
         #Remove camada de classificação (ficam só as features)

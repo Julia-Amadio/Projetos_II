@@ -12,7 +12,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 #Predownload modelos
-RUN python -c "from huggingface_hub import snapshot_download; print('Downloading ConvNext models (snapshot)...'); snapshot_download(repo_id='facebook/convnext-large-224-22k-1k'); print('ConvNext models downloaded.')"
+RUN python -c "from huggingface_hub import snapshot_download; print('Downloading ConvNext-TINY model (snapshot)...'); snapshot_download(repo_id='facebook/convnext-tiny-224'); print('ConvNext-TINY model downloaded.')"
 RUN python -c "from rembg import new_session; print('Downloading rembg models (u2net)...'); new_session('u2net'); print('rembg models downloaded.')"
 
 COPY . .
