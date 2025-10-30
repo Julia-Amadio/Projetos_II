@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
-from feature_extractor_single import process_single_image
+from python_scripts.feature_extractor_single import process_single_image
 import shutil
 import os
 
