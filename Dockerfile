@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-#expõe a porta padrão
-EXPOSE 8000
+#expõe explicitamente a porta usada pelo Render
+EXPOSE 10000
 
-#inicia a API (usa $PORT se existir)
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+#inicia o servidor FastAPI
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
