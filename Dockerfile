@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 10000
 
 #inicia o servidor FastAPI
-CMD ["python", "-m", "python_scripts.main"]
+CMD uvicorn python_scripts.main:app --host 0.0.0.0 --port $PORT

@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
-from python_scripts.feature_extractor_single import process_single_image
+from feature_extractor_single import process_single_image
 import shutil
 import os
 
@@ -22,8 +22,3 @@ async def extract_features(file: UploadFile = File(...)):
     os.remove(temp_path)
 
     return {"features_saved_at": features_path}
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    import uvicorn
-    uvicorn.run("python_scripts.main:app", host="0.0.0.0", port=port)
