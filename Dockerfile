@@ -1,17 +1,22 @@
 FROM python:3.10
 
-WORKDIR /python_scripts
-
-COPY python_scripts/ /python_scripts/
-
-COPY requirements.txt ./
+WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        build-essential git wget ca-certificates libglib2.0-0 libsm6 libxext6 libxrender1 \
-    && rm -rf /var/lib/apt/lists/*
+    build-essential && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+#Predownload modelos
+RUN python -c "from huggingface_hub import snapshot_download; print('Downloading ConvNext models (snapshot)...'); snapshot_download(repo_id='facebook/convnext-large-224-22k-1k'); print('ConvNext models downloaded.')"
+RUN python -c "from rembg import new_session; print('Downloading rembg models (u2net)...'); new_session('u2net'); print('rembg models downloaded.')"
+
+COPY . .
+
+EXPOSE 10000
+
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT

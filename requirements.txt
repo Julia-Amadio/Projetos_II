@@ -1,15 +1,29 @@
+# =====================================
+# Núcleo da API
+# =====================================
 fastapi==0.115.0
 uvicorn[standard]==0.30.6
 python-multipart==0.0.9
 
+# =====================================
+# Deep Learning / Modelos (CPU)
+# =====================================
 torch==2.2.2+cpu
 torchvision==0.17.2+cpu
 -f https://download.pytorch.org/whl/torch_stable.html
+
 transformers==4.39.3
 timm==0.9.16
 
+# =====================================
+# Processamento de imagem
+# =====================================
 pillow==10.3.0
-rembg>=2.0.50
-onnxruntime==1.16.3
+rembg==2.0.56
+onnxruntime==1.19.2
 numpy==1.26.4
+
+# =====================================
+# Utilitários gerais
+# =====================================
 requests==2.32.3
